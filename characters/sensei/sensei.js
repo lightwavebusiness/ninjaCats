@@ -3,7 +3,7 @@ function Sensei(x, y) {
 
   this.sprite.scale = 0.5;
 
-  anims = [
+  this.anims = [
     {
       name: "walk",
       location: "characters/sensei/animations/sensei-walk/sensei-walk",
@@ -59,9 +59,14 @@ function Sensei(x, y) {
     },
   ];
 
-  loadNinja(this.sprite, anims);
-  var anim = anims[Math.floor(Math.random() * anims.length)];
-  this.sprite.changeAnimation(anim.name);
+  this.preload = () => {
+    loadNinja(this.sprite, this.anims);
+  };
+
+  this.randomAnim = () => {
+    var anim = this.anims[Math.floor(Math.random() * this.anims.length)];
+    this.sprite.changeAnimation(anim.name);
+  };
 
   this.jump = () => {
     //console.log(this.sprite);
@@ -70,6 +75,11 @@ function Sensei(x, y) {
 
   this.setAnimation = (anim) => {
     this.sprite.changeAnimation(anim);
+    this.sprite.animation.frame = 0;
+    this.sprite.animation.looping = false;
+    this.sprite.animation.play();
+
+    console.log(this.sprite.animation);
   };
 
   this.changeDirection = (dir) => {
@@ -79,5 +89,9 @@ function Sensei(x, y) {
   this.setMotion = (motion) => {
     this.motion = motion;
     this.sprite.setSpeed(motion.speed, motion.angle);
+  };
+
+  this.animationState = () => {
+    //console.log(this.sprite.animation);
   };
 }

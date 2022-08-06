@@ -100,7 +100,6 @@ function Shinobi(x, y) {
 
   loadNinja(obj, anims);
   var anim = anims[Math.floor(Math.random() * anims.length)];
-  obj.changeAnimation(anim.name);
 
-  return this;
+  obj.changeAnimation(anim.name);
 }

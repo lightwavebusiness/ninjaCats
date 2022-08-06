@@ -1,14 +1,23 @@
 var senseiSprite;
 var shinobiSprite;
 
+function preload() {
+  senseiSprite = new Sensei(windowWidth / 2, windowHeight / 2);
+  senseiSprite.preload();
+  //shinobiSprite = new Shinobi(2 * (width / 5), height - 150);
+}
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  senseiSprite = new Sensei(width / 5, height - 150);
-  //shinobiSprite = new Shinobi(2 * (width / 5), height - 25);
+
+  senseiSprite.randomAnim();
 }
 
 function draw() {
   background(220);
+
+  senseiSprite.animationState();
+
   drawSprites();
 }
 
@@ -31,6 +40,14 @@ function keyPressed() {
   } else if (keyCode === 37) {
     //left
     //move(player, 2, 180);
+  } else if (keyCode === 65) {
+    //left
+    //move(player, 2, 180);
+    senseiSprite.randomAnim();
+  } else if (keyCode === 81) {
+    //left
+    //move(player, 2, 180);
+    senseiSprite.setAnimation("walk");
   }
 }
 
